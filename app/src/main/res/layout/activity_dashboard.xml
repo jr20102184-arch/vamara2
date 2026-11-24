@@ -6,116 +6,197 @@
     android:fillViewport="true"
     android:background="@drawable/bg_vamara">
 
+    <!-- CONTENEDOR PRINCIPAL -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="20dp">
+
+        <!-- ENCABEZADO -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="VAMARA FINANCE"
+            android:textColor="#C8FF3D"
+            android:textSize="12sp"
+            android:letterSpacing="0.15"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tvSaludo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:text="Bienvenido a Vamara"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:text="Saldo disponible"
-            android:textColor="#9DA5B4"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/tvSaldo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="$0 COP"
-            android:textColor="#FFFFFF"
-            android:textSize="42sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:text="Ingresos"
-            android:textColor="#C8FF3D"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/tvIngresos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="$0"
+            android:layout_marginBottom="25dp"
+            android:text="Hola, Usuario"
             android:textColor="#FFFFFF"
             android:textSize="28sp"
             android:textStyle="bold"/>
 
-        <TextView
+        <!-- TARJETA DE SALDO -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Gastos"
-            android:textColor="#FF8585"
-            android:textSize="18sp"/>
+            android:orientation="vertical"
+            android:padding="22dp"
+            android:background="@drawable/bg_dashboard_card"
+            android:layout_marginBottom="18dp">
 
-        <TextView
-            android:id="@+id/tvGastos"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Saldo disponible"
+                android:textColor="#AFC8B6"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/tvSaldo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="$0 COP"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Tu dinero, bajo control"
+                android:textColor="#C8FF3D"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+        <!-- INGRESOS Y GASTOS -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="$0"
-            android:textColor="#FFFFFF"
-            android:textSize="28sp"
-            android:textStyle="bold"/>
+            android:orientation="horizontal"
+            android:layout_marginBottom="18dp">
 
-        <TextView
+            <!-- TARJETA INGRESOS -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="7dp"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@drawable/bg_dashboard_card">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="↓ Ingresos"
+                    android:textColor="#C8FF3D"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvIngresos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="$0 COP"
+                    android:textColor="#FFFFFF"
+                    android:textSize="21sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <!-- TARJETA GASTOS -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="7dp"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@drawable/bg_dashboard_card">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="↑ Gastos"
+                    android:textColor="#FF8585"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvGastos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="$0 COP"
+                    android:textColor="#FFFFFF"
+                    android:textSize="21sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- TARJETA MOVIMIENTOS -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Movimientos recientes"
-            android:textColor="#FFFFFF"
-            android:textSize="21sp"
-            android:textStyle="bold"/>
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@drawable/bg_dashboard_card"
+            android:layout_marginBottom="18dp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Movimientos recientes"
+                android:textColor="#FFFFFF"
+                android:textSize="19sp"
+                android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/tvListaMovimientos"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="#344B34"/>
+
+            <TextView
+                android:id="@+id/tvListaMovimientos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cargando movimientos..."
+                android:textColor="#C8DAC8"
+                android:textSize="15sp"
+                android:lineSpacingExtra="10dp"/>
+
+        </LinearLayout>
+
+        <!-- BOTONES -->
+        <Button
+            android:id="@+id/btnNuevoMovimiento"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Cargando movimientos..."
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:lineSpacingExtra="10dp"/>
-
+            android:layout_height="58dp"
+            android:text="+ Nuevo movimiento"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#0D0F14"
+            android:backgroundTint="#C8FF3D"/>
 
         <Button
             android:id="@+id/btnCerrarSesion"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="30dp"
             android:text="Cerrar sesión"
             android:textAllCaps="false"
-            android:backgroundTint="#C8FF3D"
-            android:textColor="#0D0F14"/>
-
-        <Button
-            android:id="@+id/btnNuevoMovimiento"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="22dp"
-            android:text="+ Nuevo movimiento"
-            android:textAllCaps="false"
-            android:textColor="#0D0F14"
-            android:backgroundTint="#C8FF3D"/>
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#26352A"/>
 
     </LinearLayout>
 </ScrollView>
