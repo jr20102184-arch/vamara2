@@ -3,6 +3,7 @@ package com.finalproject.vamara
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +22,9 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var tvIngresos: TextView
     private lateinit var tvGastos: TextView
     private lateinit var tvMovimientos: TextView
+    private lateinit var tvPorcentajeAhorro: TextView
+    private lateinit var tvEstadoFinanciero: TextView
+    private lateinit var progresoAhorro: ProgressBar
 
     private var listener: ListenerRegistration? = null
 
@@ -40,17 +44,31 @@ class DashboardActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_dashboard)
 
+        findViewById<Button>(R.id.btnMisMetas)
+            .setOnClickListener {
+                startActivity(
+                    Intent(this, AhorroActivity::class.java)
+                )
+            }
+
+
+        // Referencias a los elementos del dashboard
         tvSaldo = findViewById(R.id.tvSaldo)
         tvIngresos = findViewById(R.id.tvIngresos)
         tvGastos = findViewById(R.id.tvGastos)
         tvMovimientos = findViewById(R.id.tvListaMovimientos)
+
+        // Elementos del análisis financiero
+        tvPorcentajeAhorro = findViewById(R.id.tvPorcentajeAhorro)
+        tvEstadoFinanciero = findViewById(R.id.tvEstadoFinanciero)
+        progresoAhorro = findViewById(R.id.progresoAhorro)
 
         val nombre = usuario.displayName ?: "Usuario"
 
         findViewById<TextView>(R.id.tvSaludo).text =
             "Hola, $nombre"
 
-        // Abrir formulario
+        // Abrir formulario de movimientos
         findViewById<Button>(
             R.id.btnNuevoMovimiento
         ).setOnClickListener {
@@ -77,6 +95,7 @@ class DashboardActivity : AppCompatActivity() {
 
         tvMovimientos.text = "Cargando movimientos..."
 
+        // Escuchar cambios en Firestore en tiempo real
         listener = db.collection("usuarios")
             .document(usuario.uid)
             .collection("movimientos")
@@ -103,22 +122,19 @@ class DashboardActivity : AppCompatActivity() {
     private fun actualizarDashboard(
         snapshot: QuerySnapshot
     ) {
-
         var ingresos = 0L
         var gastos = 0L
 
-        val movimientos = snapshot.documents
-            .sortedByDescending {
-                it.getTimestamp("fecha")?.seconds ?: 0L
-            }
+        val movimientos = snapshot.documents.sortedByDescending {
+            it.getTimestamp("fecha")?.seconds ?: 0L
+        }
 
         val historial = StringBuilder()
 
+        // Calcular ingresos y gastos
         for (documento in movimientos) {
 
             val tipo = documento.getString("tipo") ?: ""
-            val categoria = documento.getString("categoria") ?: "Otros"
-            val descripcion = documento.getString("descripcion") ?: ""
             val monto = documento.getLong("monto") ?: 0L
 
             if (tipo == "Ingreso") {
@@ -128,12 +144,57 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
 
+        // CÁLCULO 1: SALDO DISPONIBLE
         val saldo = ingresos - gastos
 
         tvSaldo.text = formatearDinero(saldo)
         tvIngresos.text = formatearDinero(ingresos)
         tvGastos.text = formatearDinero(gastos)
 
+        // CÁLCULO 2: PORCENTAJE DE AHORRO
+        val porcentajeAhorro = if (ingresos > 0L) {
+            saldo.toDouble() / ingresos.toDouble() * 100.0
+        } else {
+            0.0
+        }
+
+        val porcentajeTexto = String.format(
+            Locale("es", "CO"),
+            "%.1f%%",
+            porcentajeAhorro
+        )
+
+        tvPorcentajeAhorro.text = porcentajeTexto
+
+        // La barra siempre debe estar entre 0 y 100
+        progresoAhorro.progress = porcentajeAhorro
+            .coerceIn(0.0, 100.0)
+            .toInt()
+
+        // CÁLCULO 3: ESTADO FINANCIERO
+        val estado = when {
+            ingresos == 0L && gastos == 0L ->
+                "Registra tus movimientos para comenzar."
+
+            saldo < 0L ->
+                "Atención: estás gastando más de lo que recibes."
+
+            ingresos == 0L ->
+                "Tienes gastos, pero aún no registras ingresos."
+
+            saldo == 0L ->
+                "Estás utilizando el 100% de tus ingresos."
+
+            porcentajeAhorro >= 30.0 ->
+                "¡Excelente! Estás conservando una buena parte de tus ingresos."
+
+            else ->
+                "Vas por buen camino. Intenta aumentar tu ahorro."
+        }
+
+        tvEstadoFinanciero.text = estado
+
+        // Mostrar últimos movimientos
         if (movimientos.isEmpty()) {
             tvMovimientos.text =
                 "Aún no tienes movimientos."

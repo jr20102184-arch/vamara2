@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D130F"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="MIS METAS"
+            android:textColor="#C8FF3D"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Ahorra para tus sueños"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+
+        <!-- CREAR O EDITAR META -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/bg_dashboard_card"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Configura tu meta"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/etNombreMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Ejemplo: Mi próxima moto"
+                android:inputType="textCapSentences"
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#8D9F90"/>
+
+            <EditText
+                android:id="@+id/etMontoMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Precio de tu meta en COP"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#8D9F90"/>
+
+            <Button
+                android:id="@+id/btnGuardarMeta"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#C8FF3D"
+                android:text="Guardar meta"
+                android:textAllCaps="false"
+                android:textColor="#0D130F"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <!-- PROGRESO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_dashboard_card"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvNombreMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Todavía no tienes una meta"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Llevas ahorrado"
+                android:textColor="#AFC8B6"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tvAhorroActual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="$0 COP"
+                android:textColor="#C8FF3D"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvPorcentajeMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="0%"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <ProgressBar
+                android:id="@+id/progressMeta"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="14dp"
+                android:layout_marginTop="10dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#C8FF3D"
+                android:progressBackgroundTint="#374239"/>
+
+            <TextView
+                android:id="@+id/tvMetaTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Meta: $0 COP"
+                android:textColor="#AFC8B6"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tvFaltante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Te falta: $0 COP"
+                android:textColor="#AFC8B6"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <!-- APORTAR -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_dashboard_card"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agregar dinero"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/etAporte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="¿Cuánto vas a ahorrar?"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#8D9F90"/>
+
+            <Button
+                android:id="@+id/btnAgregarAporte"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#C8FF3D"
+                android:text="+ Agregar a mi ahorro"
+                android:textAllCaps="false"
+                android:textColor="#0D130F"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvMensajeMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text=""
+                android:textColor="#C1FF30"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

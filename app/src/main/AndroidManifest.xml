@@ -14,32 +14,50 @@
         android:roundIcon="@drawable/logou_vamara"
         android:supportsRtl="true"
         android:theme="@style/Theme.Vamara">
+
+        <!-- Pantalla principal -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <!-- Inicio de sesión -->
         <activity
             android:name=".LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Registro -->
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Dashboard -->
         <activity
             android:name=".DashboardActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Registrar ingresos y gastos -->
         <activity
             android:name=".MovimientoActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Metas de ahorro -->
+        <activity
+            android:name=".AhorroActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
     </application>
 
 </manifest>
