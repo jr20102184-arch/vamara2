@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "199190357376",
+    "project_id": "vamara-9cc7c",
+    "storage_bucket": "vamara-9cc7c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199190357376:android:44947895f944b217344d65",
+        "android_client_info": {
+          "package_name": "com.finalproject.vamara"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmwuAUg54XaFCGsjhT8Q1QENCM24McwqU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
